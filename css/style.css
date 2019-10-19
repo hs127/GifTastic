@@ -1,0 +1,40 @@
+
+
+.startbtn {
+    margin-top: 20%; 
+    margin-left:25%; 
+    padding:.5%; 
+    font-size:20px; 
+}
+
+#questionResults {
+    margin:5%; 
+}
+
+.displayBox {
+    display:flex;
+    flex-direction:column; 
+    margin-left:20%;
+    margin-top:5%; 
+    /* text-align:center;  */
+}
+
+#question {
+    font-size:20px; 
+}
+
+
+.imageBackground {
+    background-image: url("https://images8.alphacoders.com/760/760721.png");
+    /* width:auto; 
+    height:100%;  */
+    background-size: 95% auto; 
+    font-family: "Oswald", Helvetica Neue;
+    color: #FFC500;
+}
+
+button {
+    background-color: #7F0909;
+    color: #FFC500;
+    border-color: #7F0909;
+}
