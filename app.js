@@ -4,9 +4,23 @@
 
 //array for buttons 
 var animals = [];
+//at the click of submit button 
+
+
+$("#run-search").on("click", function (event) {
+  event.preventDefault();
+  var animal = $("#animal").val().trim();
+  animals.push(animal);
+  console.log(animals);
+  showButtons();
+  displayInfo();
+});
 
 function displayInfo() {
   var animal = $("#animal").val().trim();
+  animal = animal.replace(" ", "+");
+  console.log(animal);
+
   var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=WFJplg3iatAVEZaypAFwHH5yiMmJb84U&q=" + animal + "&limit=10&offset=0&rating=G&lang=en";
 
   $.ajax({
@@ -14,7 +28,7 @@ function displayInfo() {
     method: "GET"
   }).then(function (response) {
     console.log(response);
-
+    console.log(queryURL);
     // storing the data from the AJAX request in the results variable
     var results = response.data;
 
@@ -30,7 +44,22 @@ function displayInfo() {
       // Creating and storing an image tag
       var animalImage = $("<img>");
       // Setting the src attribute of the image to a property pulled off the result item
-      animalImage.attr("src", results[i].images.fixed_height.url);
+
+      //animated one 
+      // animalImage.attr("src", results[i].images.fixed_height.url);
+
+      //static 
+      // $('#my_image').data({ 'test-1': 'num1', 'test-2': 'num2' });
+
+
+      // attr({ "data-test-1": num1, "data-test-2": num2 });
+      // animalImage.attr("src", results[i].images.fixed_height_still.url);
+      animalImage.addClass("gif").attr({
+        src: (results[i].images.fixed_height_still.url),
+        "data-state": "still",
+        "data-still": results[i].images.fixed_height_still.url,
+        "data-animate": results[i].images.fixed_height.url
+      });
 
       // Appending the paragraph and image tag to the animalDiv
       animalDiv.append(p);
@@ -45,25 +74,34 @@ function displayInfo() {
 
 function showButtons() {
   $("#animalButtons").empty();
-
   //loop thru the array of animals inputted 
   for (var i = 0; i < animals.length; i++) {
     var button = $("<button>").addClass("animal-btn").attr("data-name", animals[i]).text(animals[i]);
+
+    $("#animalButtons").append(button);
+  }
+}
+
+function animate() {
+  console.log("gif clicked");
+  // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+  var state = $(this).attr("data-state");
+  // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+  // Then, set the image's data-state to animate
+  // Else set src to the data-still value
+  if (state === "still") {
+    $(this).attr("src", $(this).attr("data-animate"));
+    $(this).attr("data-state", "animate");
+  } else {
+    $(this).attr("src", $(this).attr("data-still"));
+    $(this).attr("data-state", "still");
   }
 }
 
 
-$(document).on('click', '.answers', function (e) {
-  console.log("user clicked");
-  clearInterval(timerID);
-  if ($(e.target).attr("data-ans") == myQuestions.quiz[quesIndex].correctAnswer) {
-    console.log("correct answer");
-    correctAnswer();
-  }
-  else {
-    console.log("wrong answer");
-    wrongAnswer();
-  }
 
-  e.preventDefault();
-});
+$(document).on("click", ".animal-btn", displayInfo);
+
+$(document).on("click", ".gif", animate);
+
+showButtons(); 
