@@ -3,20 +3,12 @@
 //check word guess HW 
 
 //array for buttons 
-var animals = [];
+var topics = [];
 //at the click of submit button 
 
 
-$("#run-search").on("click", function (event) {
-  event.preventDefault();
-  var animal = $("#animal").val().trim();
-  animals.push(animal);
-  console.log(animals);
-  showButtons();
-  displayInfo();
-});
-
 function displayInfo() {
+
   var animal = $("#animal").val().trim();
   animal = animal.replace(" ", "+");
   console.log(animal);
@@ -36,7 +28,9 @@ function displayInfo() {
     for (var i = 0; i < results.length; i++) {
 
       // Creating and storing a div tag
-      var animalDiv = $("<div>");
+      var animalDiv = $("<div>")
+
+      $(animalDiv).addClass("container1");
 
       // Creating a paragraph tag with the result item's rating
       var p = $("<p>").text("Rating: " + results[i].rating);
@@ -75,8 +69,8 @@ function displayInfo() {
 function showButtons() {
   $("#animalButtons").empty();
   //loop thru the array of animals inputted 
-  for (var i = 0; i < animals.length; i++) {
-    var button = $("<button>").addClass("animal-btn").attr("data-name", animals[i]).text(animals[i]);
+  for (var i = 0; i < topics.length; i++) {
+    var button = $("<button>").addClass("animal-btn").attr("data-name", topics[i]).text(topics[i]);
 
     $("#animalButtons").append(button);
   }
@@ -98,7 +92,16 @@ function animate() {
   }
 }
 
+$("#run-search").on("click", function (event) {
+  event.preventDefault();
+  var animal = $("#animal").val().trim();
+  topics.push(animal);
+  console.log(topics);
+  showButtons();
+  displayInfo();
+  $("#results").clear();
 
+});
 
 $(document).on("click", ".animal-btn", displayInfo);
 

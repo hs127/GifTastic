@@ -7,6 +7,14 @@
     font-size:20px; 
 }
 
+.container1 {
+    width: 200px;
+    height:200px; 
+    margin-top:35px; 
+    display:inline-block; 
+
+}
+
 #questionResults {
     margin:5%; 
 }
@@ -34,7 +42,7 @@
 }
 
 button {
-    background-color: #7F0909;
-    color: #FFC500;
+    background-color: grey;
+    color: whitesmoke;
     border-color: #7F0909;
 }
