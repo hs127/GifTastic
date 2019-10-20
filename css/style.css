@@ -1,4 +1,8 @@
-
+body {
+    background-image: url(https://www.animalspot.net/wp-content/uploads/2018/03/Farm-Animals-Pictures.jpg);
+    background-size: 100% auto; 
+    color:whitesmoke; 
+}
 
 .startbtn {
     margin-top: 20%; 
@@ -6,6 +10,8 @@
     padding:.5%; 
     font-size:20px; 
 }
+
+
 
 .container1 {
     width: 200px;
@@ -15,10 +21,13 @@
 
 }
 
-#questionResults {
-    margin:5%; 
+#animal {
+    width:30%; 
+    text-align:center;
+    margin-left:35%;
+    color:green; 
+    
 }
-
 .displayBox {
     display:flex;
     flex-direction:column; 
@@ -27,22 +36,34 @@
     /* text-align:center;  */
 }
 
-#question {
+#userForm {
+    margin:10%;  
+    text-align:center; 
+    
+}
+
+.animal-btn {
+    color:whitesmoke;
+    background-color: #87ceeb;
+    margin-left:1%; 
+    margin-top:.5%;
+    width:50px; 
+    border-color:darkblue;
+}
+
+.btn {
+color:whitesmoke; 
+background-color: grey;
+}
+
+.form-group {
+    color:whitesmoke; 
+    font-weight: bold;
     font-size:20px; 
 }
 
-
-.imageBackground {
-    background-image: url("https://images8.alphacoders.com/760/760721.png");
-    /* width:auto; 
-    height:100%;  */
-    background-size: 95% auto; 
-    font-family: "Oswald", Helvetica Neue;
-    color: #FFC500;
+#results {
+    background-color:grey; 
+    margin:3%
 }
 
-button {
-    background-color: grey;
-    color: whitesmoke;
-    border-color: #7F0909;
-}
